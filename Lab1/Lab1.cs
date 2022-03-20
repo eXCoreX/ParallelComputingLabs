@@ -2,7 +2,7 @@
 
 class Program
 {
-    private bool stopSignalled = false;
+    private volatile bool stopSignalled = false;
 
     public static void Main(string[] args)
     {
