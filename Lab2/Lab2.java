@@ -31,6 +31,7 @@ class Ideone
     }
     
     private int min = Integer.MAX_VALUE;
+    private int minIdx = -1;
 
     private void FindMain(int[] arr, int threadsNum) throws java.lang.Exception
     {
@@ -39,6 +40,7 @@ class Ideone
         Thread[] threads = new Thread[threadsNum];
         
         min = Integer.MAX_VALUE;
+	minIdx = -1;
 
         Object _lock = new Object();
 
@@ -56,6 +58,7 @@ class Ideone
                             if (arr[i] < min)
                             {
                                 min = arr[i];
+				minIdx = i;
                             }
                         }
                     }
@@ -72,6 +75,6 @@ class Ideone
 
        LocalTime endTime = LocalTime.now();
 
-       System.out.println(threadsNum + " threads: min is " + min + ": "+ Duration.between(startTime, endTime).toMillis() + "ms");
+       System.out.println(threadsNum + " threads: min is " + min + "(index " + minIdx + "): "+ Duration.between(startTime, endTime).toMillis() + "ms");
     }
 }

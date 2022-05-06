@@ -31,6 +31,7 @@ class Program
         var threads = new Thread[threadsNum];
 
         var min = int.MaxValue;
+	var minIdx = -1;
         object _lock = new();
 
         for (int threadIdx = 0; threadIdx < threads.Length; threadIdx++)
@@ -47,6 +48,7 @@ class Program
                             if (arr[i] < min)
                             {
                                 min = arr[i];
+				minIdx = i;
                             }
                         }
                     }
@@ -63,6 +65,6 @@ class Program
 
         var endTime = DateTime.Now;
 
-        Console.WriteLine($"{threadsNum} threads: min is {min}: {(endTime - startTime).TotalMilliseconds}ms");
+        Console.WriteLine($"{threadsNum} threads: min is {min} (index {minIdx}): {(endTime - startTime).TotalMilliseconds}ms");
     }
 }
